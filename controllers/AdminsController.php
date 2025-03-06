@@ -6,7 +6,7 @@ class AdminsController extends Controller
 
     public function index()
     {
-        $role = 'super_admin';
+        $role = $_SESSION['admin_role'];
         if ($role == 'super_admin'){
             $admin = $this->model('admin');
             $admins = $admin->all();

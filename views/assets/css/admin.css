@@ -33,6 +33,18 @@ body {
 .sidebar h3 {
     color: #81c408;
 }
+.logout{
+    background-color: red;
+    color: white;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    
+}
 .sidebar a {
     width: 100%;
     margin-bottom: 10px;

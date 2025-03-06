@@ -18,7 +18,7 @@ $router = new Router();
 //auth routes
 $router->get('/admin', 'AdminController@login', 'admin.login');
 $router->post('/admin/login', 'AdminController@authenticate', 'admin.authenticate');
-
+$router->post('/admin-logout', 'AdminController@adminLogout', 'admin.logout');
 //Manage Users Routes
 $router->get('/users', 'UserController@index', 'user.list');
 $router->get('/users/create', 'UserController@create', 'user.create');
@@ -63,8 +63,8 @@ $router->delete('/admins/{id}', 'AdminsController@destroy', 'admins.destroy');
 //////////////////////////////////////////////
 
 // Public Views Routes
-///public products routes(Shop Page)
-$router->get('/productspublic', 'ProductspublicController@index', 'product.index');
+//public products routes(Shop Page)
+$router->get('/productspublic', 'ProductspublicController@index');
 $router->get('/productspublic/{id}', 'ProductspublicController@show', 'product.show');
 
 ///home page routes (Landing Page)

@@ -5,7 +5,7 @@
 <div class="content">
     <!-- Manage Users Section -->
     <div id="users-section" class="card">
-<h1>All Products</h1>
+<h1>All Products </h1>
 
 <!-- Example: Display users in a table -->
 <?php if (!empty($products)): ?>

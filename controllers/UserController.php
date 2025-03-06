@@ -8,7 +8,7 @@ class UserController extends Controller
     {
         $user = $this->model('user');
         $users = $user->all();
-
+        
         $title = 'Users';
         $this->render('admin.users.index', [
             'pageTitle' => 'All users',

@@ -60,21 +60,29 @@ class Model
             return null;
         }
     }
+    public function findAdmin($conditions)
+{
+    try {
+        $sql = "SELECT * FROM {$this->table} WHERE ";
+        $sql .= implode(" AND ", array_map(fn($key) => "$key = :$key", array_keys($conditions)));
+        $sql .= " LIMIT 1";
 
-    public function findAdmin($email)
-    {
-        //dd($id);
-        try {
-            $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE {$this->$email} = :email LIMIT 1");
-            $stmt->bindParam(':email', $email);
-            $stmt->execute();
-            //dd($stmt->fetch(PDO::FETCH_ASSOC));
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            error_log("Database error in find(): " . $e->getMessage());
-            return null;
+        $stmt = $this->db->prepare($sql);
+        
+        foreach ($conditions as $key => $value) {
+            $stmt->bindValue(":$key", $value);
         }
+
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        error_log("Database error in find(): " . $e->getMessage());
     }
+
+    return false;
+}
+
+
 
     /**
      * Get all records from the table
