@@ -1,34 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once '../../layout/admin/head.php' ?>
+
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/layout/admin/head.php'; ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/layout/admin/sidebar.php'; ?>
 <body>
-<?php require_once '../../layout/admin/sidebar.php' ?>
-    <div class="content">
-           <!-- edit Admin Section -->
-    <div id="edit_admin" class="card">
-        <h4>Edit Admin</h4>
-        <form action="insert_user_product.php" method="POST">
+
+
+<div class="content">
+           <!-- Create User Section -->
+    <div class="card">
+    <h4>Edit Product</h4>
+        <form action="/admins/<?= $admin['id'] ?>/edit" method="POST">
+            <!-- Use a hidden input to tell your system to treat it as PUT -->
+            <input type="hidden" name="_method" value="PUT" />
             <div class="mb-3">
-                <label class="form-label">First Name</label>
-                <input type="text" class="form-control" name="first_name" required>
+                <label for="exampleInputEmail1" class="form-label">First Name</label>
+                
+                    <input name="first_name" type="text" class="form-control"  aria-describedby="username" value="<?= $admin['first_name'] ?>">
+               
             </div>
             <div class="mb-3">
-                <label class="form-label">Last Name Name</label>
-                <input type="text" class="form-control" name="last_name" required>
+                <label for="exampleInputEmail1" class="form-label">Last Name</label>
+                
+                    <input name="last_name" type="text" class="form-control"  aria-describedby="username" value="<?= $admin['last_name'] ?>">
+                
             </div>
             <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="email" class="form-control" name="email" required>
+                <label for="exampleInputEmail1" class="form-label">E-mail</label>
+               
+                    <input name="email" type="email" class="form-control"  aria-describedby="username" value="<?= $admin['email'] ?>">
+                
             </div>
             <div class="mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" class="form-control" name="phone">
+                <label for="exampleInputEmail1" class="form-label">Password</label>
+               
+                    <input name="password" type="password" class="form-control"  aria-describedby="username" value="<?= $admin['password'] ?>">
+                
             </div>
-            <button type="submit" class="btn btn-red">Edit Admin</button>
+            <!-- <div class="mb-3">
+                <label class="form-label">Role</label>
+                <select class="form-select" multiple aria-label="Multiple select example" name="role" id="">
+                        <option value="admin">Admin</option>
+                        <option value="super_admin">Super Admin</option>
+                    </select>
+            </div> -->
+
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
         </form>
     </div>
-    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

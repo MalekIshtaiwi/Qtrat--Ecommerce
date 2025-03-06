@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once '../../layout/admin/head.php' ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/layout/admin/head.php'; ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/layout/admin/sidebar.php'; ?>
 <body>
-<?php require_once '../../layout/admin/sidebar.php' ?>
     <div class="content">
-           <!-- Create User Section -->
+           <!-- Create Admin Section -->
     <div id="create_admin" class="card">
         <h4>Create Admin</h4>
-        <form action="insert_user_product.php" method="POST">
+        <form action="/admins/create" method="POST">
             <div class="mb-3">
                 <label class="form-label">First Name</label>
                 <input type="text" class="form-control" name="first_name" required>
@@ -16,14 +16,26 @@
                 <label class="form-label">Last Name</label>
                 <input type="text" class="form-control" name="last_name" required>
             </div>
+            
             <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="email" class="form-control" name="email" required>
+                <label for="exampleInputEmail1" class="form-label">E-mail</label>
+               
+                    <input name="email" type="email" class="form-control"  aria-describedby="username">
+                
             </div>
             <div class="mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" class="form-control" name="phone">
+                <label for="exampleInputEmail1" class="form-label">Password</label>
+               
+                    <input name="password" type="password" class="form-control"  aria-describedby="username">
+                
             </div>
+            <!-- <div class="mb-3">
+                <label class="form-label">Role</label>
+                <select class="form-select" multiple aria-label="Multiple select example" name="role" id="">
+                        <option value="admin">Admin</option>
+                        <option value="super_admin">Super Admin</option>
+                    </select>
+            </div> -->
             <button type="submit" class="btn btn-red">Create Admin</button>
         </form>
     </div>

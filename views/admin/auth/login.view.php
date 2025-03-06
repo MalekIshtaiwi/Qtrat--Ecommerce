@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-	<link rel="stylesheet" href="../../assets/css/login_register.css">
+	<link rel="stylesheet" href="/views/assets/css/login_register.css">
 </head>
 <body>
 <div id="container" class="container">
@@ -54,30 +54,19 @@
 			<div class="col align-items-center flex-col sign-in">
 				<div class="form-wrapper align-items-center">
 					<div class="form sign-in">
+						<form action="/admin/login" method="POST">
 						<div class="input-group">
 							<i class='bx bxs-user'></i>
-							<input type="text" placeholder="Email">
+							<input type="text" placeholder="Email" name="email">
 						</div>
 						<div class="input-group">
 							<i class='bx bxs-lock-alt'></i>
-							<input type="password" placeholder="Password">
+							<input type="password" placeholder="Password" name="password">
 						</div>
-						<button>
+						<button type="submit">
 							Sign in
 						</button>
-						<p>
-							<b>
-								Forgot password?
-							</b>
-						</p>
-						<p>
-							<span>
-								Don't have an account?
-							</span>
-							<b onclick="toggle()" class="pointer">
-								Sign up here
-							</b>
-						</p>
+						</form>
 					</div>
 				</div>
 				<div class="form-wrapper">

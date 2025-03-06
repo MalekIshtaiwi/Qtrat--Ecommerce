@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once '../../layout/admin/head.php' ?>
- <?php
- require_once '../../layout/admin/sidebar.php'
- ?> 
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/layout/admin/head.php'; ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/layout/admin/sidebar.php'; ?>
+<body>
 <div class="content">
     <!-- Manage Users Section -->
-    <div id="users-section" class="card">
-<h1>All Admins</h1>
+    <div id="users-section" class="">
+    <div class="card-head d-flex justify-content-between ">
+
+<h1 class="title">All Admins</h1>
+<!-- Link to Create a new user -->
+
+<a class="create-btn " href="/admins/create">Create New Admin</a>
+</div>
+
 
 <!-- Example: Display users in a table -->
 <?php if (!empty($admins)): ?>
@@ -18,6 +24,7 @@
             <th>First name</th>
             <th>Last name</th>
             <th>Email</th>
+            <th>Role</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -28,15 +35,16 @@
                 <td><?= htmlspecialchars($admin['first_name']) ?></td>
                 <td><?= htmlspecialchars($admin['last_name']) ?></td>
                 <td><?= htmlspecialchars($admin['email']) ?></td>
+                <td><?= htmlspecialchars($admin['role']) ?></td>
                 <td>
                     <!-- Edit link (GET) -->
-                    <a href="/admins/<?= $admin['id'] ?>/edit">Edit</a>
+                    <a class="btn btn-primary" href="/admins/<?= $admin['id'] ?>/edit">Edit</a>
                     &nbsp;|&nbsp;
 
                     <!-- Delete form (simulating DELETE via _method) -->
                     <form action="/admins/<?= $admin['id'] ?>" method="POST" style="display:inline;">
                         <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" onclick="return confirm('Are you sure?')">
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">
                             Delete
                         </button>
                     </form>
@@ -50,10 +58,6 @@
 <?php else: ?>
     <p>No Admins found.</p>
 <?php endif; ?>
-
-<!-- Link to Create a new user -->
-<p>
-    <a href="/admins/create">Create New User</a>
-</p>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
