@@ -33,17 +33,38 @@
                 <div class="d-flex m-3 me-0">
                     <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
                     <a href="../wishlist.php" class="position-relative me-4 my-auto">
-                        <i class="fa-solid fa-heart fa-2xl" style="color: #81c408;"></i>
+                        <i class="fa fa-heart fa-2xl" style="color: #81c408;"></i>
                     </a>
                     <a href="../cart.php" class="position-relative me-4 my-auto">
                         <i class="fa fa-shopping-bag fa-2x"></i>
                         <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
                     </a>
-                    <a href="../profile.php" class="my-auto">
-                        <i class="fas fa-user fa-2x"></i>
-                    </a>
+                    <div class="dropdown my-auto">
+                        <a href="#" class="my-auto" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user fa-2x"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                            <li>
+                                <form action="profile.php" method="post">
+                                    <button type="submit" class="dropdown-item">View Profile</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="settings.php" method="post">
+                                    <button type="submit" class="dropdown-item">Settings</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="/user-logout" method="POST">
+                                    <button type="submit" class="dropdown-item text-danger">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
         </nav>
     </div>
+</div>
+</nav>
+</div>
 </div>

@@ -70,6 +70,7 @@ $router->delete('/admins/{id}', 'AdminsController@destroy', 'admins.destroy');
 $router->get('/user', 'UserController@index');
 $router->post('/user/store', 'UserController@store');
 $router->post('/user/login', 'UserController@login');
+$router->post('/user-logout', 'UserController@userLogout', 'user.logout');
 
 //public products routes(Shop Page)
 $router->get('/productspublic', 'ProductspublicController@index');

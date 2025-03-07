@@ -6,14 +6,19 @@ class UserController extends Controller
 
     public function index()
     {
-        $user = $this->model('user');
-        $users = $user->all();
+        if (isset($_SESSION['userId']) && !empty($_SESSION['userId'])) {
+            $this->redirect('/pages');
+        } else {
+            $user = $this->model('user');
+            $users = $user->all();
+    
+            $title = 'Users';
+            $this->render('public.auth.index', [
+                'pageTitle' => 'All users',
+                'users' => $users
+            ]);
+        }
 
-        $title = 'Users';
-        $this->render('public.auth.index', [
-            'pageTitle' => 'All users',
-            'users' => $users
-        ]);
 
     }
 
@@ -122,12 +127,12 @@ public function login()
         // 5. Verify the password
         if ($userData && password_verify($password, $userData['password'])) {
             // Login successful
-            $_SESSION['user_id'] = $userData['id'];
+            $_SESSION['userId'] = $userData['id'];
             $_SESSION['user_email'] = $userData['email'];
-            $_SESSION['user_email'] = $userData['first_name'];
-            $_SESSION['user_email'] = $userData['last_name'];
-            $_SESSION['user_email'] = $userData['address'];
-            $_SESSION['user_email'] = $userData['phone_number'];
+            $_SESSION['firstName'] = $userData['first_name'];
+            $_SESSION['lastName'] = $userData['last_name'];
+            $_SESSION['address'] = $userData['address'];
+            $_SESSION['phoneNumber'] = $userData['phone_number'];
             $this->redirect('/pages'); // Redirect to the dashboard or home page
         } else {
             // Login failed
@@ -141,7 +146,11 @@ public function login()
     }
 }
 
-
+function userLogout(){
+    session_unset();
+    session_destroy();
+    $this->render('public.auth.index', ['title' => 'User Login']);
+}
 
 
 
