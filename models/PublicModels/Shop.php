@@ -1,7 +1,7 @@
 <?php
 
 require_once 'models/Model.php';
-class Productspublic extends Model
+class Shop extends Model
 {
 
     public function __construct()

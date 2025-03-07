@@ -12,7 +12,8 @@ require_once __DIR__ . '/controllers/AdminControllers/CategoryController.php';
 //////////////////////////////////
 require_once __DIR__ . '/controllers/PublicControllers/UserController.php';
 require_once __DIR__ . '/controllers/PublicControllers/HomeController.php';
-require_once __DIR__ . '/controllers/PublicControllers/ProductspublicController.php';
+require_once __DIR__ . '/controllers/PublicControllers/ShopController.php';
+require_once __DIR__ . '/controllers/PublicControllers/WishlistController.php';
 
 $router = new Router();
 
@@ -73,12 +74,17 @@ $router->post('/user/login', 'UserController@login');
 $router->post('/user-logout', 'UserController@userLogout', 'user.logout');
 
 //public products routes(Shop Page)
-$router->get('/productspublic', 'ProductspublicController@index');
-$router->get('/productspublic/{id}', 'ProductspublicController@show', 'product.show');
+$router->get('/shop', 'ShopController@index');
+$router->get('/shop/{id}', 'ShopController@show', 'product.show');
 
 ///home page routes (Landing Page)
-$router->get('/pages', 'HomeController@index', 'home.index');
-$router->get('/pages/{id}', 'HomeController@show', 'home.show');
-//
+$router->get('/home', 'HomeController@index', 'home.index');
+$router->get('/home/{id}', 'HomeController@show', 'home.show');
+//Wishlist
+$router->post('/add-wishlist-item', 'WishlistController@addToWishlist', 'wishlist.store');
+$router->get('/wishlist', 'WishlistController@showWishlist');
+$router->delete('/remove-item/{id}', 'WishlistController@destroy');
+// Purchase History Routes
+$router->get('/purchase-history', 'WishlistController@showWishlist');
 /////////////Dispatch
 $router->dispatch();

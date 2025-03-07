@@ -1,7 +1,7 @@
 <?php
-require_once 'models/PublicModels/Productspublic.php';
+require_once 'models/PublicModels/Shop.php';
 require_once 'controllers/Controller.php';
-class ProductspublicController extends Controller
+class ShopController extends Controller
 {
 
     public function index()
@@ -10,7 +10,7 @@ class ProductspublicController extends Controller
         
             $product = $this->model('product');
             $products = $product->all();
-            $this->render('public.productspublic.index', [
+            $this->render('public.shop.index', [
                 'pageTitle' => 'All Products',
                 'products' => $products
             ]);
@@ -28,7 +28,7 @@ class ProductspublicController extends Controller
     {
         $product = $this->model('product');
         $product = $product->find($id);
-        $this->render('public.productspublic.show', ['product' => $product]);
+        $this->render('public.shop.show', ['product' => $product]);
     }
 
     

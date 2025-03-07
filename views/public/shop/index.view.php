@@ -182,12 +182,18 @@
                                     <?php foreach($products as $product): ?>
                                         
                                     <div class="col-md-6 col-lg-6 col-xl-4">
-                                    <a  href="/productspublic/<?= $product['id'] ?>">
+                                    <a  href="/shop/<?= $product['id'] ?>">
                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
                                                 <img src="<?=$product['product_img_url']?>" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;"><?=$product['product_name']?></div>
+                                            <form action="/add-wishlist-item" method="POST" class="position-absolute" style="top: 10px; right: 10px;">
+                                                <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                                                <button type="submit" class="border-0 bg-transparent">
+                                                    <i class="fa fa-heart text-white bg-secondary px-3 py-1 rounded"></i>
+                                                </button>
+                                            </form>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                 <h4><?=$product['product_price']?></h4>
                                                 <p><?=$product['product_description']?></p>

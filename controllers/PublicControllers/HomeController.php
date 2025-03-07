@@ -8,7 +8,7 @@ class HomeController extends Controller
         //require_once 'views/pages/home.view.php';
         $product = $this->model('product');
             $products = $product->all();
-            $this->render('public.pages.index', [
+            $this->render('public.home.index', [
                 'pageTitle' => 'All Products',
                 'products' => $products
             ]);
@@ -17,7 +17,7 @@ class HomeController extends Controller
     {
         $product = $this->model('product');
         $product = $product->find($id);
-        $this->render('public.pages.show', ['product' => $product]);
+        $this->render('public.home.show', ['product' => $product]);
     }
 
 }

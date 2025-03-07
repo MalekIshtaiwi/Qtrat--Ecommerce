@@ -7,7 +7,7 @@ class UserController extends Controller
     public function index()
     {
         if (isset($_SESSION['userId']) && !empty($_SESSION['userId'])) {
-            $this->redirect('/pages');
+            $this->redirect('/home');
         } else {
             $user = $this->model('user');
             $users = $user->all();
@@ -133,7 +133,7 @@ public function login()
             $_SESSION['lastName'] = $userData['last_name'];
             $_SESSION['address'] = $userData['address'];
             $_SESSION['phoneNumber'] = $userData['phone_number'];
-            $this->redirect('/pages'); // Redirect to the dashboard or home page
+            $this->redirect('/home'); // Redirect to the dashboard or home page
         } else {
             // Login failed
             $errors['login'] = "Invalid email or password.";
@@ -160,9 +160,5 @@ public function destroy($id)
     $user->delete($id);
     $this->redirect('/users');
 
-{
-
-
-}
 }
 }
