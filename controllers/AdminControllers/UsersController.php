@@ -55,7 +55,7 @@ class UsersController extends Controller
             'first_name' => $firstName,
             'last_name'    => $lastName,
             'email'    => $email,
-            'password'    => $password
+            'password'    => password_hash($password, PASSWORD_DEFAULT)
         ]);
         $this->redirect('/users');
     }
