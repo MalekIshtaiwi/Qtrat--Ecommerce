@@ -1,23 +1,37 @@
 <?php
-require_once 'models/Product.php';
+require_once 'models/PublicModels/Productspublic.php';
 require_once 'controllers/Controller.php';
-class HomeController extends Controller
+class ProductspublicController extends Controller
 {
+
     public function index()
     {
-        //require_once 'views/pages/home.view.php';
-        $product = $this->model('product');
+        
+        
+            $product = $this->model('product');
             $products = $product->all();
-            $this->render('public.pages.index', [
+            $this->render('public.productspublic.index', [
                 'pageTitle' => 'All Products',
                 'products' => $products
             ]);
+      
+      
     }
+
+    
+
+   
+
+   
+
     public function show($id)
     {
         $product = $this->model('product');
         $product = $product->find($id);
-        $this->render('public.pages.show', ['product' => $product]);
+        $this->render('public.productspublic.show', ['product' => $product]);
     }
+
+    
+
 
 }

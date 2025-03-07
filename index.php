@@ -2,14 +2,17 @@
 
 require_once __DIR__.'/helpers/functions.php';
 require_once __DIR__ . '/config/Router.php';
-require_once __DIR__ . '/controllers/AdminController.php';
-require_once __DIR__ . '/controllers/ProductController.php';
-require_once __DIR__ . '/controllers/UserController.php';
-require_once __DIR__ . '/controllers/OrderController.php';
-require_once __DIR__ . '/controllers/AdminsController.php';
-require_once __DIR__ . '/controllers/CategoryController.php';
-require_once __DIR__ . '/controllers/HomeController.php';
-require_once __DIR__ . '/controllers/ProductspublicController.php';
+////////////////////////////////////
+require_once __DIR__ . '/controllers/AdminControllers/AdminController.php';
+require_once __DIR__ . '/controllers/AdminControllers/ProductController.php';
+require_once __DIR__ . '/controllers/AdminControllers/UsersController.php';
+require_once __DIR__ . '/controllers/AdminControllers/OrderController.php';
+require_once __DIR__ . '/controllers/AdminControllers/AdminsController.php';
+require_once __DIR__ . '/controllers/AdminControllers/CategoryController.php';
+//////////////////////////////////
+require_once __DIR__ . '/controllers/PublicControllers/UserController.php';
+require_once __DIR__ . '/controllers/PublicControllers/HomeController.php';
+require_once __DIR__ . '/controllers/PublicControllers/ProductspublicController.php';
 
 $router = new Router();
 
@@ -20,13 +23,13 @@ $router->get('/admin', 'AdminController@login', 'admin.login');
 $router->post('/admin/login', 'AdminController@authenticate', 'admin.authenticate');
 $router->post('/admin-logout', 'AdminController@adminLogout', 'admin.logout');
 //Manage Users Routes
-$router->get('/users', 'UserController@index', 'user.list');
-$router->get('/users/create', 'UserController@create', 'user.create');
-$router->post('/users/create', 'UserController@store', 'user.store');
-$router->get('/users/{id}/edit', 'UserController@edit', 'user.edit');
-$router->put('/users/{id}/edit', 'UserController@update', 'user.update');
-$router->delete('/users/{id}', 'UserController@destroy', 'user.destroy');
-$router->get('/users/{id}', 'UserController@show', 'user.show');
+$router->get('/users', 'UsersController@index', 'user.list');
+$router->get('/users/create', 'UsersController@create', 'user.create');
+$router->post('/users/create', 'UsersController@store', 'user.store');
+$router->get('/users/{id}/edit', 'UsersController@edit', 'user.edit');
+$router->put('/users/{id}/edit', 'UsersController@update', 'user.update');
+$router->delete('/users/{id}', 'UsersController@destroy', 'user.destroy');
+$router->get('/users/{id}', 'UsersController@show', 'user.show');
 
 //Manage Products Routes
 $router->get('/products', 'ProductController@index', 'product.index');
@@ -63,6 +66,10 @@ $router->delete('/admins/{id}', 'AdminsController@destroy', 'admins.destroy');
 //////////////////////////////////////////////
 
 // Public Views Routes
+//user routes
+$router->post('/user/store', 'UserController@store');
+$router->post('/user/login', 'UserController@login');
+
 //public products routes(Shop Page)
 $router->get('/productspublic', 'ProductspublicController@index');
 $router->get('/productspublic/{id}', 'ProductspublicController@show', 'product.show');
@@ -70,6 +77,6 @@ $router->get('/productspublic/{id}', 'ProductspublicController@show', 'product.s
 ///home page routes (Landing Page)
 $router->get('/pages', 'HomeController@index', 'home.index');
 $router->get('/pages/{id}', 'HomeController@show', 'home.show');
-
+//
 /////////////Dispatch
 $router->dispatch();

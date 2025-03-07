@@ -1,5 +1,5 @@
 <?php
-require_once 'models/Category.php';
+require_once 'models/AdminModels/Category.php';
 require_once 'controllers/Controller.php';
 class CategoryController extends Controller
 {

@@ -1,7 +1,7 @@
 <?php
-require_once 'models/User.php';
+require_once 'models/AdminModels/User.php';
 require_once 'controllers/Controller.php';
-class UserController extends Controller
+class UsersController extends Controller
 {
 
     public function index()

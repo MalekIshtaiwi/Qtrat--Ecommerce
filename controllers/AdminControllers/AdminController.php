@@ -1,5 +1,5 @@
 <?php
-require_once 'models/Admin.php';
+require_once 'models/AdminModels/Admin.php';
 require_once 'controllers/Controller.php';
 session_start();
 class AdminController extends Controller
