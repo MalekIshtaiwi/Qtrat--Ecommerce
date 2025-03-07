@@ -67,6 +67,7 @@ $router->delete('/admins/{id}', 'AdminsController@destroy', 'admins.destroy');
 
 // Public Views Routes
 //user routes
+$router->get('/user', 'UserController@index');
 $router->post('/user/store', 'UserController@store');
 $router->post('/user/login', 'UserController@login');
 

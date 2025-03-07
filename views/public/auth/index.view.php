@@ -362,7 +362,7 @@ body {
 				<div class="form-wrapper align-items-center">
 					<!-- views/login-register.view.php -->
                     <div class="form sign-up">
-    <form action="/user/store" method="post">
+    <form action="/user/store" method="POST">
         <div class="input-group">
             <i class='bx bxs-user'></i>
             <input type="text" name="firstname" placeholder="First name" required>
@@ -408,21 +408,24 @@ body {
 			
 			</div>
 			<!-- END SIGN UP -->
+
 			<!-- SIGN IN -->
 			<div class="col align-items-center flex-col sign-in">
 				<div class="form-wrapper align-items-center">
 					<div class="form sign-in">
+                        <form action="/user/login" method="POST">
 						<div class="input-group">
 							<i class='bx bxs-user'></i>
-							<input type="text" placeholder="Email">
+							<input type="text" placeholder="Email" name="email">
 						</div>
 						<div class="input-group">
 							<i class='bx bxs-lock-alt'></i>
-							<input type="password" placeholder="Password">
+							<input type="password" placeholder="Password" name="password">
 						</div>
-						<button>
+						<button type="submit">
 							Sign in
 						</button>
+                        </form>
 						<p>
 							<b>
 								Forgot password?

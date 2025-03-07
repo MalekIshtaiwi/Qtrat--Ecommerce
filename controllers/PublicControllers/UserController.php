@@ -1,5 +1,5 @@
 <?php
-require_once 'models/User.php';
+require_once 'models/PublicModels/User.php';
 require_once 'controllers/Controller.php';
 class UserController extends Controller
 {
@@ -10,7 +10,7 @@ class UserController extends Controller
         $users = $user->all();
 
         $title = 'Users';
-        $this->render('admin.users.index', [
+        $this->render('public.auth.index', [
             'pageTitle' => 'All users',
             'users' => $users
         ]);
@@ -73,7 +73,7 @@ class UserController extends Controller
         if (!empty($errors)) {
             // Store errors in session or pass them to the view
             $_SESSION['errors'] = $errors;
-            $this->redirect('/user/create'); // Redirect back to the form
+            $this->redirect('/user'); // Redirect back to the form
             return;
         }
     
@@ -89,7 +89,7 @@ class UserController extends Controller
         ]);
     
         // 4. Redirect to a success page or login page
-        $this->redirect('/users');
+        $this->redirect('/user');
     }
     // controllers/UserController.php
 public function login()
@@ -111,7 +111,7 @@ public function login()
         // 3. If validation fails, re-render the form with errors
         if (!empty($errors)) {
             $_SESSION['errors'] = $errors;
-            $this->redirect('/user/login'); // Redirect back to the login form
+            $this->redirect('/user'); // Redirect back to the login form
             return;
         }
 
@@ -124,49 +124,26 @@ public function login()
             // Login successful
             $_SESSION['user_id'] = $userData['id'];
             $_SESSION['user_email'] = $userData['email'];
-            $this->redirect('/dashboard'); // Redirect to the dashboard or home page
+            $_SESSION['user_email'] = $userData['first_name'];
+            $_SESSION['user_email'] = $userData['last_name'];
+            $_SESSION['user_email'] = $userData['address'];
+            $_SESSION['user_email'] = $userData['phone_number'];
+            $this->redirect('/pages'); // Redirect to the dashboard or home page
         } else {
             // Login failed
             $errors['login'] = "Invalid email or password.";
             $_SESSION['errors'] = $errors;
-            $this->redirect('/user/login'); // Redirect back to the login form
+            $this->redirect('/user'); // Redirect back to the login form
         }
     } else {
         // Display the login form
-        $this->render('admin.users.login', ['title' => 'Login']);
+        $this->render('public.auth.index', ['title' => 'Login']);
     }
 }
 
 
-    public function edit($id)
-    {
-        $user = $this->model('user');
-        $user = $user->find($id);
-        $this->render('admin.users.edit', ['user' => $user]);
-    }
 
-    public function update($id){
-        $data = [
-            'first_name' => $_POST['firstname'] ?? '',
-            'last_name'    => $_POST['lastname'] ?? '',
-            'email'    => $_POST['email'] ?? '',
-            'address'    => $_POST['address'] ?? '',
-            'phone_number'    => $_POST['phonenumber'] ?? ''
-        ];
 
-        // Update the user record
-        $userModel = $this->model('user'); // "user" maps to User.php, extends Model
-        $result = $userModel->update($id, $data);
-
-        if ($result) {
-            // Update succeeded
-            // Redirect or show a success message
-            $this->redirect('/users');
-        } else {
-            // Update failed
-            echo "Error updating user with ID: " . htmlspecialchars($id);
-        }
-    }
 
 public function destroy($id)
 {

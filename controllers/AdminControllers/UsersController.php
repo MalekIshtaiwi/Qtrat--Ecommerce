@@ -1,5 +1,5 @@
 <?php
-require_once 'models/AdminModels/User.php';
+require_once 'models/AdminModels/Users.php';
 require_once 'controllers/Controller.php';
 class UsersController extends Controller
 {
