@@ -8,12 +8,17 @@
     <a class="nav-link" href="/orders">Manage Orders</a>
 
     <a class="nav-link" href="/products">Manage Products</a>
-    <?php if ($_SESSION['admin_role'] == 'super_admin') {?>
-    <a class="nav-link" href="/admins">Manage Admins</a>
+
+    <a class="nav-link" href="/categories">Manage Categories</a>
+
+    <?php if ($_SESSION['admin_role'] == 'super_admin') { ?>
+        <a class="nav-link" href="/admins">Manage Admins</a>
     <?php } ?>
+
     <form action="/admin-logout" method="POST">
-    <button class="logout" type="submit">Log out</button>
+        <button class="logout" type="submit">Log out</button>
     </form>
+
 </div>
 
 <!-- Navbar for Small Screens -->
@@ -29,13 +34,13 @@
                     <a class="nav-link" href="/users">Manage Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/products" >Manage Orders</a>
+                    <a class="nav-link" href="/products">Manage Orders</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/orders" >Manage Products</a>
+                    <a class="nav-link" href="/orders">Manage Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admins" >Manage Admins</a>
+                    <a class="nav-link" href="/admins">Manage Admins</a>
                 </li>
             </ul>
         </div>

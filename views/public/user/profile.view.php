@@ -51,95 +51,72 @@ color:#69707a;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 #profile-section{
-    margin-top: 20vh;
+    margin-top: 20vh !important;
 }
     </style>
 </head>
-<?php require_once "../../layout/public/head.php" ?>
+<?php require_once "views/layout/public/head.php" ?>
 
 <body>
-<?php require_once "../../layout/public/header.php" ?>
-<div class="container-xl px-4" id="profile-section">
-    <!-- Account page navigation-->
+<?php require_once "views/layout/public/header.php" ?>
+<div class="container-xl px-4 mt-5" id="profile-section">
     <div class="row">
         <div class="col-xl-4">
-            <!-- Profile picture card-->
             <div class="card mb-4 mb-xl-0">
                 <div class="card-header">Profile Picture</div>
                 <div class="card-body text-center">
-                    <!-- Profile picture image-->
-                    <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-                    <!-- Profile picture help block-->
+                    <img class="img-account-profile rounded-circle mb-2" 
+                         src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
-                    <!-- Profile picture upload button-->
                     <button class="btn btn-primary" type="button">Upload new image</button>
                 </div>
             </div>
         </div>
         <div class="col-xl-8">
-            <!-- Account details card-->
             <div class="card mb-4">
-                <div class="card-header">Account Details</div>
+            <div class="card mb-4">
+                <!-- Header with buttons -->
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Profile</h5>
+                    <div class="btn-group" role="group">
+                    <a href="/user/<?= $user['id'] ?>/edit" class="btn btn-outline-primary me-2">
+                        Account Details
+                    </a>
+                    <a href="/user/<?= $user['id'] ?>/security" class="btn btn-primary">
+                        Security Settings
+                    </a>
+                    </div>
+                </div>
                 <div class="card-body">
-                    <form>
-                        <!-- Form Group (username)-->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-                            <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="username">
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="small mb-1">First Name</label>
+                            <div class="form-control-static"><?= $user['first_name'] ?></div>
                         </div>
-                        <!-- Form Row-->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (first name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputFirstName">First name</label>
-                                <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="Valerie">
-                            </div>
-                            <!-- Form Group (last name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputLastName">Last name</label>
-                                <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="Luna">
-                            </div>
+                        <div class="col-md-6">
+                            <label class="small mb-1">Last Name</label>
+                            <div class="form-control-static"><?= $user['last_name'] ?></div>
                         </div>
-                        <!-- Form Row        -->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (organization name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputOrgName">Organization name</label>
-                                <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
-                            </div>
-                            <!-- Form Group (location)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputLocation">Location</label>
-                                <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA">
-                            </div>
-                        </div>
-                        <!-- Form Group (email address)-->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                            <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com">
-                        </div>
-                        <!-- Form Row-->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (phone number)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputPhone">Phone number</label>
-                                <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567">
-                            </div>
-                            <!-- Form Group (birthday)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
-                            </div>
-                        </div>
-                        <!-- Save changes button-->
-                        <button class="btn btn-primary" type="button">Save changes</button>
-                    </form>
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Address</label>
+                        <div class="form-control-static"><?= $user['address'] ?></div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Email</label>
+                        <div class="form-control-static"><?= $user['email'] ?></div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1">Phone</label>
+                        <div class="form-control-static"><?= $user['phone_number'] ?></div>
+                    </div>
+                    <a href="/user/<?= $user['id'] ?>/edit" class="btn btn-primary">Edit Profile</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<?php require_once "../../layout/public/footer.php" ?>
+<?php require_once "views/layout/public/footer.php" ?>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">

@@ -40,8 +40,6 @@ class UserController extends Controller
         $email = $_POST['email'] ?? null;
         $password = $_POST['password'] ?? null;
         $confirmPassword = $_POST['confirm_password'] ?? null;
-        $phoneNumber = $_POST['phone_number'] ?? null;
-        $address = $_POST['address'] ?? null;
     
         // 2. Validate the data
         $errors = [];
@@ -64,15 +62,9 @@ class UserController extends Controller
         }
     
         // Validate phone number (example: must be 10 digits)
-        if (!preg_match('/^[0-9]{10}$/', $phoneNumber)) {
-            $errors['phone_number'] = "Phone number must be 10 digits.";
-        }
         
     
         // Validate address (example: must not be empty)
-        if (empty($address)) {
-            $errors['address'] = "Address is required.";
-        }
     
         // If there are errors, re-render the form with errors
         if (!empty($errors)) {
@@ -88,9 +80,7 @@ class UserController extends Controller
             'first_name' => $firstName,
             'last_name' => $lastName,
             'email' => $email,
-            'password' => password_hash($password, PASSWORD_DEFAULT),
-            'phone_number' => $phoneNumber,
-            'address' => $address
+            'password' => password_hash($password, PASSWORD_DEFAULT)
         ]);
     
         // 4. Redirect to a success page or login page
@@ -152,6 +142,125 @@ function userLogout(){
     $this->render('public.auth.index', ['title' => 'User Login']);
 }
 
+public function viewProfile() 
+{
+    if (!isset($_SESSION['userId'])) {
+        $this->redirect('/user/login');
+    }
+
+    $userModel = $this->model('user');
+    $user = $userModel->findByEmail($_SESSION['user_email']);
+
+    $this->render('public.user.profile', [
+        'title' => 'User Profile',
+        'user' => $user 
+    ]);
+}
+
+public function edit($id) {
+    $user = $this->model('user')->find($id);
+    $this->render('public.user.editprofile', [
+        'title' => 'Edit Profile',
+        'user' => $user
+    ]);
+}
+
+public function update($id) {
+    $data = [
+        'first_name' => $_POST['first_name'] ?? '',
+        'last_name' => $_POST['last_name'] ?? '',
+        'email' => $_POST['email'] ?? '',
+        'phone_number' => $_POST['phone_number'] ?? '',
+        'address' => $_POST['address'] ?? ''
+    ];
+
+    $errors = [];
+    foreach ($data as $key => $value) {
+        if (empty($value)) {
+            $errors[$key] = ucfirst(str_replace('_', ' ', $key)) . ' is required';
+        }
+    }
+
+    if (!empty($errors)) {
+        $_SESSION['errors'] = $errors;
+        $this->redirect("/user/{$id}/edit");
+    }
+
+    $userModel = $this->model('user');
+    $userModel->update($id, $data);
+
+    // Update session data
+    $updatedUser = $userModel->find($id);
+    $_SESSION['firstName'] = $updatedUser['first_name'];
+    $_SESSION['lastName'] = $updatedUser['last_name'];
+    $_SESSION['user_email'] = $updatedUser['email'];
+    $_SESSION['phoneNumber'] = $updatedUser['phone_number'];
+    $_SESSION['address'] = $updatedUser['address'];
+
+    $this->redirect('/user/profile');
+}
+public function editSecurity($id) {
+    $user = $this->model('user')->find($id);
+    
+    if (!$user) {
+        $this->redirect('/user/profile');
+    }
+
+    $this->render('public.user.editProfileSecurity', [
+        'title' => 'Security Settings',
+        'user' => $user
+    ]);
+}
+
+public function updateSecurity($id) {
+    $userModel = $this->model('user');
+    $existingUser = $userModel->find($id);
+
+    if (!$existingUser) {
+        $this->redirect('/user/profile');
+    }
+
+    $currentPass = $_POST['current_password'] ?? '';
+    $newPass = $_POST['new_password'] ?? '';
+    $confirmPass = $_POST['confirm_password'] ?? '';
+
+    $errors = [];
+
+    // Verify current password
+    if (!password_verify($currentPass, $existingUser['password'])) {
+        $errors[] = 'Current password is incorrect';
+    }
+
+    // Validate new password
+    if (strlen($newPass) < 8) {
+        $errors[] = 'Password must be at least 8 characters';
+    }
+    if (!preg_match('/[A-Z]/', $newPass)) {
+        $errors[] = 'Password requires at least one uppercase letter';
+    }
+    if (!preg_match('/[a-z]/', $newPass)) {
+        $errors[] = 'Password requires at least one lowercase letter';
+    }
+    if (!preg_match('/[0-9]/', $newPass)) {
+        $errors[] = 'Password requires at least one number';
+    }
+    if ($newPass !== $confirmPass) {
+        $errors[] = 'Passwords do not match';
+    }
+
+    if (!empty($errors)) {
+        $_SESSION['errors'] = $errors;
+        $this->redirect("/user/{$id}/security");
+        return;
+    }
+
+    // Update password
+    $hashedPass = password_hash($newPass, PASSWORD_DEFAULT);
+    $userModel->update($id, ['password' => $hashedPass]);
+
+    $_SESSION['success'] = 'Password updated successfully';
+    $this->redirect('/user/profile');
+}
 
 
 public function destroy($id)

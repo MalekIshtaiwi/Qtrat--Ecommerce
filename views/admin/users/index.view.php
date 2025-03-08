@@ -10,6 +10,9 @@
     <div id="users-section" class="card">
 <h1>All Users</h1>
 
+<p>
+    <a class="btn btn-success mt-4" href="/users/create">Create New User</a>
+</p>  
 <!-- Example: Display users in a table -->
 <?php if (!empty($users)): ?>
     <table class="table table-success table-bordered">
@@ -51,9 +54,7 @@
         </tbody>
     </table>
     </div>
-    <p>
-    <a href="/users/create">Create New User</a>
-</p>    
+  
         </div>
 <?php else: ?>
     <p>No Users found.</p>

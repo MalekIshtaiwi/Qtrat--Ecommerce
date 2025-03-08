@@ -383,14 +383,6 @@ body {
             <i class='bx bxs-lock-alt'></i>
             <input type="password" name="confirm_password" placeholder="Confirm password" required>
         </div>
-        <div class="input-group">
-            <i class='bx bxs-phone'></i>
-            <input type="text" name="phone_number" placeholder="Phone Number" required>
-        </div>
-        <div class="input-group">
-            <i class='bx bxs-map'></i>
-            <input type="text" name="address" placeholder="Address" required>
-        </div>
         <button type="submit">
             Sign up
         </button>

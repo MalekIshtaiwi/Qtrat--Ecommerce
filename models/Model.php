@@ -1,5 +1,5 @@
 <?php
-require_once 'config/Database.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/config/Database.php'; 
 /**
  * Base Model Class
  *
@@ -280,6 +280,63 @@ class Model
         } catch (PDOException $e) {
             error_log("Database error in count(): " . $e->getMessage());
             return 0;
+        }
+    }
+
+    public function getCartItemsByUserId($user_id)
+{
+    try {
+
+        $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE user_id = :user_id");
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    } catch (PDOException $e) {
+        error_log("Database error in getCartItemsByUserId(): " . $e->getMessage());
+        return [];
+    }
+}
+public function deleteByWhere($conditions)
+{
+    try {
+        $conditionString = '';
+        foreach ($conditions as $field => $value) {
+            $conditionString .= "{$field} = :{$field} AND ";
+        }
+        $conditionString = rtrim($conditionString, ' AND ');
+
+        $sql = "DELETE FROM {$this->table} WHERE {$conditionString}";
+        $stmt = $this->db->prepare($sql);
+
+        foreach ($conditions as $field => $value) {
+            $stmt->bindValue(":{$field}", $value);
+        }
+
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        error_log("Database error in deleteByWhere(): " . $e->getMessage());
+        return false;
+    }
+}
+
+
+
+
+    public function updateQuantity($cart_id, $quantity)
+    {
+        try {
+
+            $stmt = $this->db->prepare("UPDATE cart SET quantity = :quantity WHERE id = :cart_id");
+
+
+            $stmt->bindParam(':cart_id', $cart_id, PDO::PARAM_INT);
+            $stmt->bindParam(':quantity', $quantity, PDO::PARAM_INT);
+
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Database error in updateQuantity(): " . $e->getMessage());
+            return false;
         }
     }
 }

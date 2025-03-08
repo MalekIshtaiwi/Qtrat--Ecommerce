@@ -6,7 +6,9 @@
     <!-- Manage Users Section -->
     <div id="users-section" class="card">
 <h1>All Products </h1>
-
+<p>
+    <a class="btn btn-success mt-4" href="/products/create">Create New Product</a>
+</p>
 <!-- Example: Display users in a table -->
 <?php if (!empty($products)): ?>
     <table class="table table-success table-bordered">
@@ -50,9 +52,7 @@
     </table>
     </div>
     <!-- Link to Create a new user -->
-<p>
-    <a class="btn btn-success mt-4" href="/products/create">Create New Product</a>
-</p>
+
         </div>
 <?php else: ?>
     <p>No Products found.</p>

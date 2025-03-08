@@ -14,6 +14,7 @@ require_once __DIR__ . '/controllers/PublicControllers/UserController.php';
 require_once __DIR__ . '/controllers/PublicControllers/HomeController.php';
 require_once __DIR__ . '/controllers/PublicControllers/ShopController.php';
 require_once __DIR__ . '/controllers/PublicControllers/WishlistController.php';
+require_once __DIR__ . '/controllers/PublicControllers/CartController.php';
 
 $router = new Router();
 
@@ -86,5 +87,21 @@ $router->get('/wishlist', 'WishlistController@showWishlist');
 $router->delete('/remove-item/{id}', 'WishlistController@destroy');
 // Purchase History Routes
 $router->get('/purchase-history', 'WishlistController@showWishlist');
+// Profile Management
+$router->get('/user/profile', 'UserController@viewProfile', 'user.profile');
+$router->get('/user/{id}/edit', 'UserController@edit', 'user.edit');
+$router->put('/user/{id}/update', 'UserController@update', 'user.update');
+$router->put('/user/{id}/update-security', 'UserController@updateSecurity', 'user.update-security');
+
+// Security Settings Routes
+$router->get('/user/{id}/security', 'UserController@editSecurity', 'user.security');
+$router->put('/user/{id}/update-security', 'UserController@updateSecurity', 'user.update-security');
+// Cart Routes
+$router->get('/cart', 'CartController@index', 'cart.index');
+
+$router->get('/cart/{id}/edit', 'CartController@edit', 'cart.edit');
+$router->put('/cart/{id}/update', 'CartController@update', 'cart.update');
+
+$router->delete('/cart/{id}/destroy', 'CartController@destroy', 'cart.destroy');
 /////////////Dispatch
 $router->dispatch();

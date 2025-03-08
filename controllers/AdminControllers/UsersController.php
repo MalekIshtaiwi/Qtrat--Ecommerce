@@ -24,7 +24,7 @@ class UsersController extends Controller
     }
     public function create()
     {
-        $this->render('admin.users.create', ['title' => 'Create Product']);
+        $this->render('admin.users.create', ['title' => 'Add A User']);
     }
 
     public function store()
@@ -40,7 +40,7 @@ class UsersController extends Controller
             'firstname' => 'required|alpha|min:3',
             'lastname'    => 'required|alpha|min:3',
             'email'    => 'required|email',
-            'password'    => 'required|alphanumeric|min:8|max:16'
+            'password'    => 'required|min:8|max:16'
         ]);
 
         // If validation fails, re-render form with errors

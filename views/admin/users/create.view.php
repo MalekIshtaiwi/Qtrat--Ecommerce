@@ -7,7 +7,7 @@
     <div class="content">
            <!-- Create User Section -->
     <div id="create_admin" class="card">
-        <h4>Create Product</h4>
+        <h4>Add a user</h4>
         <form action="/users/create" method="POST">
             <div class="mb-3">
                 <label class="form-label">First Name</label>
@@ -15,15 +15,15 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Last Name</label>
-                <input type="text" class="form-control" name="firstname" required>
+                <input type="text" class="form-control" name="lastname" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <textarea name="email" class="form-control"  aria-describedby="username"></textarea>
+                <input type="text" class="form-control" name="email" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Password</label>
-                <input type="text" class="form-control" name="password">
+                <input type="password" class="form-control" name="password">
             </div>
             <button type="submit" class="btn btn-red">Create Product</button>
         </form>
