@@ -5,7 +5,7 @@
 <body>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/layout/admin/sidebar.php'; ?>
     <div class="content">
-           <!-- Create User Section -->
+           
     <div id="create_admin" class="card">
         <h4>Add a user</h4>
         <form action="/users/create" method="POST">
@@ -25,8 +25,10 @@
                 <label class="form-label">Password</label>
                 <input type="password" class="form-control" name="password">
             </div>
-            <button type="submit" class="btn btn-red">Create Product</button>
+            <button type="submit" class="btn btn-primary">Create User</button>
+            <a href="/users" class="btn btn-secondary">Cancel</a>
         </form>
+        
     </div>
     </div>
 

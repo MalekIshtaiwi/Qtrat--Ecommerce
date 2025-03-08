@@ -27,7 +27,7 @@
                
             </div>
            
-            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+            <button type="submit" class="btn btn-primary mt-2">Update Category</button>
         </form>
     </div>
 </div>

@@ -31,7 +31,7 @@ class CategoryController extends Controller
 
 
         $errors = $this->validate([
-            'name' => 'required|alphanumeric|min:3',
+            'name' => 'required',
             'image_url' => 'required',
 
         ]);

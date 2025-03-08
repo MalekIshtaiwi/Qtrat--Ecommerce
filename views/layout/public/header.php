@@ -33,17 +33,28 @@
                 </div>
                 <div class="d-flex m-3 me-0">
                     <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
-                    <a href="wishlist" class="position-relative me-4 my-auto">
+                    <?php if (isset($_SESSION['userId'])) {?>
+                    <a href="/wishlist" class="position-relative me-4 my-auto">
                         <i class="fa-solid fa-heart fa-2xl" style="color: #81c408;"></i>
                     </a>
                     <a href="/cart" class="position-relative me-4 my-auto">
                         <i class="fa fa-shopping-bag fa-2x"></i>
                         <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
                     </a>
+                    <?php } else {?>
+                        <a href="#" class="position-relative me-4 my-auto">
+                        <i class="fa-solid fa-heart fa-2xl" style="color: #81c408;"></i>
+                    </a>
+                    <a href="#" class="position-relative me-4 my-auto">
+                        <i class="fa fa-shopping-bag fa-2x"></i>
+                        <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+                    </a>
+                        <?php }?>
                     <div class="dropdown my-auto">
                         <a href="#" class="my-auto" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user fa-2x"></i>
                         </a>
+                        <?php if (isset($_SESSION['userId'])) {?>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                             <li>
                                 <form action="/user/profile" method="GET">
@@ -61,6 +72,20 @@
                                 </form>
                             </li>
                         </ul>
+                        <?php } else {?>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                            <li>
+                                <form action="/user" method="GET">
+                                    <button type="submit" class="dropdown-item">Register</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="/user" method="GET">
+                                    <button type="submit" class="dropdown-item">Login</button>
+                                </form>
+                            </li>
+                        </ul>
+                        <?php }?>
                     </div>
                 </div>
         </nav>

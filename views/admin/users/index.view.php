@@ -7,13 +7,14 @@
 <div class="content">
     <!-- Manage Users Section -->
     
-    <div id="users-section" class="card">
-<h1>All Users</h1>
+    <div id="users-section">
 
-<p>
-    <a class="btn btn-success mt-4" href="/users/create">Create New User</a>
-</p>  
-<!-- Example: Display users in a table -->
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="admin-page-title">All Users</h1>
+    
+    <a class="btn admin-page-btn px-4 py-2" href="/users/create">Create New User</a>
+</div>
+
 <?php if (!empty($users)): ?>
     <table class="table table-success table-bordered">
         <thead>
@@ -34,8 +35,8 @@
                 <td><?= htmlspecialchars($user['first_name']) ?></td>
                 <td><?= htmlspecialchars($user['last_name']) ?></td>
                 <td><?= htmlspecialchars($user['email']) ?></td>
-                <td><?= htmlspecialchars($user['address']) ?></td>
-                <td><?= htmlspecialchars($user['phone_number']) ?></td>
+                <td><?= htmlspecialchars($user['address'] ?? '') ?></td>
+                <td><?= htmlspecialchars($user['phone_number'] ?? '') ?></td>
                 <td>
                     <!-- Edit link (GET) -->
                     <a class="btn btn-primary"  href="/users/<?= $user['id'] ?>/edit">Edit</a>

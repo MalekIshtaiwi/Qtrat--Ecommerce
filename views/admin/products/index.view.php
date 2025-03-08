@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/layout/admin/head.php'; ?>
+<body>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/layout/admin/sidebar.php'; ?>
 <div class="content">
     <!-- Manage Users Section -->
-    <div id="users-section" class="card">
-<h1>All Products </h1>
-<p>
-    <a class="btn btn-success mt-4" href="/products/create">Create New Product</a>
-</p>
-<!-- Example: Display users in a table -->
+    <div id="users-section">
+
+<div class="d-flex justify-content-between align-items-center">
+    <h1 class="admin-page-title">All Products</h1>
+    
+    <a class="btn admin-page-btn px-4 py-2" href="/products/create">Create New Product</a>
+</div>
+
 <?php if (!empty($products)): ?>
     <table class="table table-success table-bordered">
         <thead>

@@ -21,7 +21,7 @@
 
 </div>
 
-<!-- Navbar for Small Screens -->
+
 <nav class="navbar navbar-expand-lg " id="navbar">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Admin Dashboard</a>
@@ -34,13 +34,26 @@
                     <a class="nav-link" href="/users">Manage Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/products">Manage Orders</a>
+                    <a class="nav-link" href="/orders">Manage Orders</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/orders">Manage Products</a>
+                    <a class="nav-link" href="/products">Manage Products</a>
+                </li class="nav-link">
+                <li>
+                <a class="nav-link" href="/categories">Manage Categories</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admins">Manage Admins</a>
+                
+                <?php if ($_SESSION['admin_role'] == 'super_admin') { ?>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/admins">Manage Admins</a>
+                    </li>
+        
+                <?php } ?>
+
+                <li class="nav-link">
+                <form action="/admin-logout" method="POST">
+                     <button class="nav-link redd" type="submit">Log out</button>
+                 </form>
                 </li>
             </ul>
         </div>

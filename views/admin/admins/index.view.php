@@ -6,19 +6,18 @@
 <body>
     <div class="content">
         <!-- Manage Users Section -->
-        <div id="users-section" class="">
-            <div class="card-head d-flex justify-content-between">
+        <div id="users-section" class="table-responsive">
+        <div class="d-flex justify-content-between align-items-center">
+    <h1 class="admin-page-title">All Admins</h1>
+    <!-- Link to Create a new admin -->
+    <a class="btn admin-page-btn px-4 py-2" href="/admins/create">Create New Admin</a>
+</div>
 
-                <h1 class="title">All Admins</h1>
-                <!-- Link to Create a new user -->
-
-                <a class="btn btn-success mt-4 " href="/admins/create">Create New Admin</a>
-            </div>
 
 
             <!-- Example: Display users in a table -->
             <?php if (!empty($admins)): ?>
-                <table class="table table-success table-bordered">
+                <table class="table table-success table-bordered ">
                     <thead>
                         <tr>
                             <th>ID</th>

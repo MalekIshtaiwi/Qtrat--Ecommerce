@@ -29,14 +29,8 @@
                     <input name="password" type="password" class="form-control"  aria-describedby="username">
                 
             </div>
-            <!-- <div class="mb-3">
-                <label class="form-label">Role</label>
-                <select class="form-select" multiple aria-label="Multiple select example" name="role" id="">
-                        <option value="admin">Admin</option>
-                        <option value="super_admin">Super Admin</option>
-                    </select>
-            </div> -->
-            <button type="submit" class="btn btn-red">Create Admin</button>
+            <button type="submit" class="btn btn-primary">Create Admin</button>
+            <a href="/admins" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
     </div>

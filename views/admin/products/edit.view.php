@@ -42,7 +42,8 @@
                     <input type="text" class="form-control" name="category_id" value="<?= $product['category_id'] ?>">
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                <button type="submit" class="btn btn-primary">Update Product</button>
+                <a href="/products" class="btn btn-secondary">Cancel</a>
             </form>
         </div>
     </div>

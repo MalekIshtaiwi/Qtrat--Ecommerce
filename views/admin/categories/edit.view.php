@@ -4,6 +4,8 @@
 <body>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/layout/admin/sidebar.php'; ?>
 <div class="content">
+<div class="card">
+
     <!-- Edit Category Form -->
     <form action="/categories/<?= $category['id'] ?>/edit" method="POST">
         <input type="hidden" name="_method" value="PUT" />
@@ -21,6 +23,7 @@
         <button type="submit" class="btn btn-primary">Update Category</button>
         <a href="/categories" class="btn btn-secondary">Cancel</a>
     </form>
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -3,9 +3,12 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/layout/admin/head.php'; ?>
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/layout/admin/sidebar.php'; ?>
 <div class="content">
-    <div class="card">
-        <h1 class="mb-4">All Categories</h1>
-        <a class="btn btn-success mt-4" href="/categories/create">Create New Category</a>
+    <div>
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="admin-page-title">All Categories</h1>
+    
+            <a class="btn admin-page-btn px-4 py-2" href="/categories/create">Create New Category</a>
+        </div>
         <?php if (!empty($categories)): ?>
             <table class="table table-success table-bordered">
                 <thead>
@@ -28,12 +31,12 @@
                                     height="40">
                             </td>
                             <td>
-                                <a href="/categories/<?= $category['id'] ?>/edit" class="btn btn-warning btn-sm">
+                                <a href="/categories/<?= $category['id'] ?>/edit" class="btn btn-primary">
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
                                 <form action="/categories/<?= $category['id'] ?>" method="POST" style="display:inline;">
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">
                                         <i class="fas fa-trash"></i> Delete
                                     </button>
                                 </form>

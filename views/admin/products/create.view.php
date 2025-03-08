@@ -30,7 +30,8 @@
                 <label class="form-label">Category Id</label>
                 <input type="text" class="form-control" name="category_id">
             </div>
-            <button type="submit" class="btn btn-red">Create Product</button>
+            <button type="submit" class="btn btn-primary">Create Product</button>
+            <a href="/products" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
     </div>

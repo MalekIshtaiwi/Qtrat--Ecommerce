@@ -45,7 +45,8 @@
                     </select>
             </div> -->
 
-            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+            <button type="submit" class="btn btn-primary ">Update Admin</button>
+            <a href="/admins" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 </div>

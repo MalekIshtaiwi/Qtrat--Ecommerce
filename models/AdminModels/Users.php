@@ -1,13 +1,11 @@
 <?php
-require_once 'config/Database.php';
-
+require_once 'models/Model.php';
 class Users extends Model
 {
 
-    public function getUsers()
+    public function __construct()
     {
+        parent::__construct('users');
 
-        return null;
     }
-
 }

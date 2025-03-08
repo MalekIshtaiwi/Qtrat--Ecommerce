@@ -28,8 +28,8 @@ $router->post('/admin-logout', 'AdminController@adminLogout', 'admin.logout');
 $router->get('/users', 'UsersController@index', 'user.list');
 $router->get('/users/create', 'UsersController@create', 'user.create');
 $router->post('/users/create', 'UsersController@store', 'user.store');
-$router->get('/users/{id}/edit', 'UsersController@edit', 'user.edit');
-$router->put('/users/{id}/edit', 'UsersController@update', 'user.update');
+$router->get('/users/{id}/edit', 'UsersController@edit');
+$router->put('/users/{id}/edit', 'UsersController@update');
 $router->delete('/users/{id}', 'UsersController@destroy', 'user.destroy');
 $router->get('/users/{id}', 'UsersController@show', 'user.show');
 
@@ -74,9 +74,10 @@ $router->post('/user/store', 'UserController@store');
 $router->post('/user/login', 'UserController@login');
 $router->post('/user-logout', 'UserController@userLogout', 'user.logout');
 
-//public products routes(Shop Page)
+//shop products routes(Shop Page)
 $router->get('/shop', 'ShopController@index');
 $router->get('/shop/{id}', 'ShopController@show', 'product.show');
+$router->post('/shop/{id}','ShopController@categorized');
 
 ///home page routes (Landing Page)
 $router->get('/home', 'HomeController@index', 'home.index');

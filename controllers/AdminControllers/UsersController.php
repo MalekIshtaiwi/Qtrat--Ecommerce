@@ -79,16 +79,11 @@ class UsersController extends Controller
 
         // Update the user record
         $userModel = $this->model('user'); // "user" maps to User.php, extends Model
-        $result = $userModel->update($id, $data);
+        $userModel->update($id, $data);
 
-        if ($result) {
-            // Update succeeded
-            // Redirect or show a success message
+
             $this->redirect('/users');
-        } else {
-            // Update failed
-            echo "Error updating user with ID: " . htmlspecialchars($id);
-        }
+        
     }
 
 public function destroy($id)

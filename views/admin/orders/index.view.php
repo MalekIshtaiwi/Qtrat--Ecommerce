@@ -4,8 +4,8 @@
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/layout/admin/sidebar.php'; ?>
 <div class="content">
     <!-- Manage Users Section -->
-    <div  class="card">
-<h1>All Orders</h1>
+    <div  >
+<h1 class="admin-page-title">All Orders</h1>
 
 <!-- Example: Display users in a table -->
 <?php if (!empty($orders)): ?>

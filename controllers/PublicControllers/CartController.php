@@ -9,11 +9,7 @@ class CartController extends Controller {
         $this->cartModel = new Cart();
     
     
-    if (!isset($_SESSION['userId'])) {
-        $_SESSION['userId'] = 9999;  
-    }
-    
-    $user_id = $_SESSION['userId']; 
+
 }
 
 
@@ -22,7 +18,7 @@ class CartController extends Controller {
         
     
         
-        $user_id = isset($_SESSION['userId']) ? $_SESSION['userId'] : 9999;
+        $user_id = $_SESSION['userId'];
     
         
         $cart = $this->model('cart');
@@ -38,7 +34,6 @@ class CartController extends Controller {
 
     public function update($id) {
         if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['cart_id'], $_POST['quantity'])) {
-            $user_id = $_SESSION['userId'] ?? 1;  
             $cart_id = $_POST['cart_id'];
             $quantity = filter_input(INPUT_POST, 'quantity', FILTER_VALIDATE_INT) ?? 1;
     
