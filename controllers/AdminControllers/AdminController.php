@@ -33,7 +33,7 @@ class AdminController extends Controller
     
 
     
-            if ($admin && $admin['password'] === $password) { // Password is not hashed
+            if ($admin && password_verify($password,$admin['password'])) { // Password is not hashed
                 
                 $_SESSION['admin_id'] = $admin['id'];
                 $_SESSION['admin_email'] = $admin['email'];
