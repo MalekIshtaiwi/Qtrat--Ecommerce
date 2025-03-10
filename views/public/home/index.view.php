@@ -48,8 +48,8 @@
     <!-- Hero End -->
 
 
-    <div class="container-fluid py-5" id="best-seller">
-        <div class="container py-5" >
+    <div class="container-fluid py-5">
+        <div class="container py-5" id="best-seller">
             <div class="text-center mx-auto mb-5" style="max-width: 700px;">
                 <h1 class="display-4">Bestseller Products</h1>
                 <p>Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</p>
@@ -83,7 +83,7 @@
                             <!-- Text Content Column -->
                             <div class="col-7 d-flex flex-column">
                                 <div class="p-3 flex-grow-1">
-                                    <a href="#" class="product-name mb-2"><?= $product['product_name'] ?></a>
+                                    <a href="/shop/<?= $product['id'] ?>" class="product-name mb-2"><?= $product['product_name'] ?></a>
                                     <h3 class="price mb-0"><?= $product['product_price'] ?></h3>
                                 </div>
                                 
