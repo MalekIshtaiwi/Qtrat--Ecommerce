@@ -60,25 +60,15 @@
                 <div class="col-lg-12">
                     <div class="row g-4">
                         <div class="col-xl-3">
-                            <div class="input-group w-100 mx-auto d-flex">
-                                <form action="/shop-search" method="POST">
+                            <div class="input-group w-100 mx-auto d-flex mb-5">
+                                <form action="/shop-search" class = "d-flex bg-none" method="POST">
                                     <input type="search" class="form-control p-3" name="search" placeholder="keywords" aria-describedby="search-icon-1">
-                                    <button type="submit"><span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span></button>
+                                    <button style = "border:none; background:none" type="submit"><span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span></button>
                                 </form>
                             </div>
                         </div>
-                        <div class="col-6"></div>
-                        <div class="col-xl-3">
-                            <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
-                                <label for="fruits">Sort By :</label>
-                                <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" form="fruitform">
-                                    <option value="Nothing">Price Asc</option>
-                                    <option value="Popularity">Price Desc</option>
-                                    <option value="Organic">Name Asc</option>
-                                    <option value="Fantastic">Name Desc</option>
-                                </select>
-                            </div>
-                        </div>
+                        
+                        
                     </div>
                     <div class="row g-4">
                         <div class="col-lg-3">

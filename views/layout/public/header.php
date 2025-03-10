@@ -28,7 +28,7 @@
                 <div class="navbar-nav mx-auto">
                     <a class="nav-item nav-link active" href="/home">Home</a>
                     <a class="nav-item nav-link active" href="/shop">Shop</a>
-                    <a class="nav-item nav-link active" href="/contact">Contect</a>
+                    
 
                 </div>
                 <div class="d-flex m-3 me-0">
@@ -62,7 +62,7 @@
                                 </form>
                             </li>
                             <li>
-                                <form action="/purchase-history" method="GET">
+                                <form action="/user/purchaseHistory" method="GET">
                                     <button type="submit" class="dropdown-item">Purchase History</button>
                                 </form>
                             </li>

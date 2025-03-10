@@ -16,6 +16,7 @@ require_once __DIR__ . '/controllers/PublicControllers/ShopController.php';
 require_once __DIR__ . '/controllers/PublicControllers/WishlistController.php';
 require_once __DIR__ . '/controllers/PublicControllers/CartController.php';
 require_once __DIR__ . '/controllers/PublicControllers/SearchController.php';
+require_once __DIR__ . '/controllers/PublicControllers/HistoryController.php';
 
 $router = new Router();
 
@@ -89,7 +90,6 @@ $router->post('/add-wishlist-item', 'WishlistController@addToWishlist', 'wishlis
 $router->get('/wishlist', 'WishlistController@showWishlist');
 $router->delete('/remove-item/{id}', 'WishlistController@destroy');
 // Purchase History Routes
-$router->get('/purchase-history', 'WishlistController@showWishlist');
 // Profile Management
 $router->get('/user/profile', 'UserController@viewProfile', 'user.profile');
 $router->get('/user/{id}/edit', 'UserController@edit', 'user.edit');
@@ -105,5 +105,7 @@ $router->get('/cart', 'CartController@index', 'cart.index');
 $router->post('/cart-item-increase','CartController@increase');
 $router->post('/cart-item-decrease','CartController@decrease');
 $router->post('/checkout','CartController@checkout');
+$router->get('/user/purchaseHistory', 'HistoryController@showHistory'); 
+
 /////////////Dispatch
 $router->dispatch();
