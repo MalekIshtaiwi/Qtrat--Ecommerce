@@ -33,7 +33,8 @@ class AdminController extends Controller
     
 
     
-            if ($admin && password_verify($password,$admin['password'])) { // Password is not hashed
+             if ($admin && password_verify($password,$admin['password'])) { // Password is not hashed
+                
                 
                 $_SESSION['admin_id'] = $admin['id'];
                 $_SESSION['admin_email'] = $admin['email'];
@@ -42,6 +43,7 @@ class AdminController extends Controller
                 $this->redirect('/users');
             } else {
                 echo "Invalid email or password.";
+                
             }
         }
     }

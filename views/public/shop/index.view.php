@@ -110,7 +110,7 @@
                                                             class="position-absolute top-0 end-0 m-3">
                                                             <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
                                                             <button type="submit" class="border-0 bg-transparent">
-                                                                <i class="fa fa-heart text-white bg-secondary px-3 py-1 rounded"></i>
+                                                                <i class="fa fa-heart text-white bg-primary px-3 py-1 rounded"></i>
                                                             </button>
                                                         </form>
                                                     </div>

@@ -37,7 +37,7 @@
         <div class="container py-5">
             <div class="row g-5 align-items-center">
                 <div class="col-md-12 col-lg-7">
-                    <h1 class="mb-5 display-3 text-white bg-primary">Dietry Supplements & Health Nutrition</h1>
+                    <h1 class="mb-5 display-3 text-white text-center rounded-circle">Dietry Supplements & Health Nutrition</h1>
                     <div class="position-relative mx-auto">
                         <a href="#best-seller"><button  type="submit" class="btn btn-primary border-2 border-secondary py-3 px-4  rounded-pill text-white h-100">Shop Now</button></a>
                     </div>
@@ -75,7 +75,7 @@
                                 <form action="/add-wishlist-item" method="POST" class="position-absolute" style="top: 10px; right: 10px;">
                                     <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
                                     <button type="submit" class="border-0 bg-transparent">
-                                    <i class="fa fa-heart text-white bg-secondary px-3 py-1 rounded"></i>
+                                    <i class="fa fa-heart text-white bg-primary px-3 py-1 rounded"></i>
                                     </button>
                                 </form>
                             </div>
@@ -109,13 +109,13 @@
 
 
     <!-- About Us Start -->
-    <div class="container-fluid testimonial py-5">
+    
         <div class="container py-5">
             <div class="testimonial-header text-center">
                 <h1 class="display-5 mb-5 text-dark">Who we are</h1>
             </div>
-            <div class="owl-carousel testimonial-carousel">
-                <div class="testimonial-item img-border-radius bg-light rounded p-4">
+            
+                
                     <div class="position-relative">
                         <div class="mb-4 pb-4 border-bottom border-secondary">
                             <p class="mb-0 text-center fs-5">
@@ -125,10 +125,10 @@
                             </p>
                         </div>
                     </div>
-                </div>
-            </div>
+                
+            
         </div>
-    </div>
+    
     <!-- About Us End -->
 
 
