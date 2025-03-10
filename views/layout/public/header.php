@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-between">
             <div class="top-info ps-2 d-flex">
                 <i class="fas fa-car-side fa-2x text-white"></i>
-                <small class="ms-3 text-white">Free shipping on order over $300</small>
+                <small class="ms-3 text-white">Free shipping on order over 100 JOD</small>
             </div>
             <div class="top-info px-2 d-flex">
                 <i class="fas fa-exchange-alt fa-2x text-white"></i>
