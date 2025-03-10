@@ -61,8 +61,10 @@
                     <div class="row g-4">
                         <div class="col-xl-3">
                             <div class="input-group w-100 mx-auto d-flex">
-                                <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                                <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                                <form action="/shop-search" method="POST">
+                                    <input type="search" class="form-control p-3" name="search" placeholder="keywords" aria-describedby="search-icon-1">
+                                    <button type="submit"><span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span></button>
+                                </form>
                             </div>
                         </div>
                         <div class="col-6"></div>
@@ -99,34 +101,54 @@
                         </div>
                         <div class="col-lg-9">
                             <div class="row g-4 justify-content-center">
-                                <?php foreach ($products as $product): ?>
+                                <?php if (!empty($products)) { ?>
+                                    <?php foreach ($products as $product): ?>
 
-                                    <div class="col-md-6 col-lg-6 col-xl-4">
-                                        <a href="/shop/<?= $product['id'] ?>">
-                                            <div class="rounded position-relative fruite-item">
-                                                <div class="fruite-img">
-                                                    <img src="<?= $product['product_img_url'] ?>" class="img-fluid w-100 rounded-top" alt="">
-                                                </div>
+                                        <div class="col-md-6 col-lg-6 col-xl-4">
+                                            <a href="/shop/<?= $product['id'] ?>" class="card-link">
+                                                <div class="card h-100 rounded">
+                                                    <!-- Image Section -->
+                                                    <div class="position-relative">
+                                                        <div class="aspect-ratio-box">
+                                                            <img src="<?= $product['product_img_url'] ?>"
+                                                                class="card-img-top rounded-top"
+                                                                style="object-fit: cover; width: 100%; height: 100%">
+                                                        </div>
 
-                                                <form action="/add-wishlist-item" method="POST" class="position-absolute" style="top: 10px; right: 10px;">
-                                                    <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
-                                                    <button type="submit" class="border-0 bg-transparent">
-                                                        <i class="fa fa-heart text-white bg-secondary px-3 py-1 rounded"></i>
-                                                    </button>
-                                                </form>
-                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                    <h4><?= $product['product_price'] ?></h4>
-                                                    <p><?= $product['product_name'] ?></p>
-                                                    <div class="d-flex justify-content-between flex-lg-wrap">
+                                                        <!-- Wishlist Button -->
+                                                        <form action="/add-wishlist-item" method="POST"
+                                                            class="position-absolute top-0 end-0 m-3">
+                                                            <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                                                            <button type="submit" class="border-0 bg-transparent">
+                                                                <i class="fa fa-heart text-white bg-secondary px-3 py-1 rounded"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
 
-                                                        <a href="cart.html" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i>🛒 Add to cart</a>
+                                                    <!-- Content Section -->
+                                                    <div class="card-body d-flex flex-column">
+                                                        <div class="flex-grow-1">
+                                                            <h5 class="card-title mb-2"><?= $product['product_price'] ?></h5>
+                                                            <p class="card-text text-truncate mb-0"><?= $product['product_name'] ?></p>
+                                                        </div>
+
+                                                        <!-- Bottom-aligned button -->
+                                                        <div class="mt-auto">
+                                                            <form action="/addToCart" method="POST">
+                                                                <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary" name="product" value="<?= $product['id'] ?>">
+                                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                                                </button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                                            </a>
+                                        </div>
 
-                                <?php endforeach; ?>
+                                    <?php endforeach; ?>
+                                <?php } else { ?>
+                                    <h1>No Products Found Nigaaaaaaaaaaaaaa</h1>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -134,14 +156,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12">
-        <div class="pagination d-flex justify-content-center mt-5">
-            <a href="#" class="rounded">&laquo;</a>
-            <a href="#" class="active rounded">1</a>
-            <a href="shop2.html" class="rounded">2</a>
-            <a href="shop2.html" class="rounded">&raquo;</a>
-        </div>
-    </div>
+
     <!-- Fruits Shop End-->
 
 

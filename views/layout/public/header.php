@@ -18,7 +18,7 @@
     </div>
     <div class="container px-0">
         <nav class="navbar navbar-light bg-white navbar-expand-xl">
-            <a href="../index.php" class="navbar-brand">
+            <a href="/home" class="navbar-brand">
                 <h1 class="text-primary display-6">QTRAT</h1>
             </a>
             <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -32,7 +32,7 @@
 
                 </div>
                 <div class="d-flex m-3 me-0">
-                    <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
+                    
                     <?php if (isset($_SESSION['userId'])) {?>
                     <a href="/wishlist" class="position-relative me-4 my-auto">
                         <i class="fa-solid fa-heart fa-2xl" style="color: #81c408;"></i>

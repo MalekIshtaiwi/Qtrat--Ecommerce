@@ -6,7 +6,7 @@
 
 
 <body>
-<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/layout/public/header.php'; ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/views/layout/public/header.php'; ?>
     <!-- Spinner Start -->
     <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" role="status"></div>
@@ -57,30 +57,38 @@
             <?php if (!empty($wishlistItems)): ?>
                 <?php foreach ($wishlistItems as $item): ?>
                     <div class="col-md-6 col-lg-4">
-                        <div class="rounded position-relative fruite-item">
-                            <div class="fruite-img">
-                                <img src="<?= $item['product_img_url'] ?>" class="img-fluid w-100 rounded-top" alt="">
+                        <div class="card h-100 rounded border-0 shadow-sm">
+                            <!-- Image Section -->
+                            <div class="position-relative">
+                                <div class="aspect-ratio-box">
+                                    <img src="<?= $item['product_img_url'] ?>"
+                                        class="img-fluid rounded-top w-100 h-100"
+                                        style="object-fit: cover">
+                                </div>
                             </div>
-                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                <h4><?= $item['product_name'] ?></h4>
 
-                                <p class="text-dark fs-5 fw-bold">$<?= $item['product_price'] ?></p>
+                            <!-- Content Section -->
+                            <div class="card-body d-flex flex-column">
+                                <div class="flex-grow-1">
+                                    <h4 class="product-name mb-2"><?= $item['product_name'] ?></h4>
+                                    <p class="price mb-0  fw-bold">$<?= $item['product_price'] ?></p>
+                                </div>
 
-                                <div class="d-flex justify-content-between">
-                                    <form action="/remove-item/<?= $item['id'] ?>" method="POST" style="display:inline;">
+                                <!-- Action Buttons -->
+                                <div class="d-flex gap-2 mt-auto">
+                                    <form action="/remove-item/<?= $item['id'] ?>" method="POST"
+                                        class="flex-grow-1">
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">
+                                        <button class="btn btn-danger w-100"
+                                            onclick="return confirm('Are you sure?')">
                                             Delete
                                         </button>
                                     </form>
-                                    <!-- <form method="POST" action="/wishlist/remove">
-                                    <input type="hidden" name="product_id" value="//">
-                                    <button type="submit" class="btn btn-danger">Remove</button>
-                                </form> -->
-
-                                    <a href="/cart/add?product_id=<?= $item['id'] ?>" class="btn btn-primary">
-                                        Add to Cart
-                                    </a>
+                                    <form action="/addToCart" method="POST">
+                                    <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary" name="product" value="<?= $item['id'] ?>">
+                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                    </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

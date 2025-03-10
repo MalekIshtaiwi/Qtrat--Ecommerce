@@ -1,6 +1,8 @@
 <?php
 
 require_once 'models/PublicModels/Cart.php';
+require_once 'models/PublicModels/Order_Item.php';
+require_once 'models/AdminModels/Order.php';
 require_once 'controllers/Controller.php';
 class CartController extends Controller {
     private $cartModel;
@@ -22,7 +24,7 @@ class CartController extends Controller {
     
         
         $cart = $this->model('cart');
-        $cartItems = $cart->getCartItems($user_id); 
+        $cartItems = $cart->getCartItems($user_id);
     
         
         $this->render('public.cart.cart', [
@@ -66,10 +68,87 @@ public function destroy($id)
     }
 }
 
+public function addToCart(){
+    $userId = $_SESSION['userId'];
+    $productId = $_POST['product'];
+    $cart = $this->model('cart');
+
+    $result = $cart->findRow($userId,$productId);
+    if (empty($result)){
+        $cart->create([ 
+            'user_id' => $userId,
+            'product_id' => $productId,
+            'quantity' => 1,
+        ]);
+    } else {
+        $quantity = $result['quantity'];
+        $quantity++;
+        $cart->updateCart($userId,$productId,$quantity);
+    }
+
+    header("Location: /home");
 
 }
+function increase(){
+    $userId = $_SESSION['userId'];
+    $productId = $_POST['product'];
+    $cart = $this->model('cart');
+    $quantity = $_POST['quantity-i'];
+    $quantity++;
+    
+    $cart->updateCart($userId,$productId,$quantity);
+    header("Location: /cart");
+}
+
+function decrease(){
+    $userId = $_SESSION['userId'];
+    $productId = $_POST['product'];
+    $cart = $this->model('cart');
+    $quantity = $_POST['quantity-d'];
+    $quantity--;
+    if ($quantity == 0) {
+        $cart->removeFromCart($userId,$productId);
+    } else {
+        $cart->updateCart($userId,$productId,$quantity);
+    }
+    
+    header("Location: /cart");
+}
+
+function checkout(){
+    $cart = $this->model('cart');
+    $order = $this->model('order');
+    $order_item = $this->model('order_item');
+
+    $userId = $_SESSION['userId'];
+    $total = $_POST['total'];
+    $order->create(
+        ['user_id'=>$userId,'total'=>$total]
+    );
+    $result = $order->getlastorder();
+    $orderId = $result['id'];
+    
+    $rows = $cart->where('user_id',$userId);//error here error done now create a function to store array in order_items
+    foreach($rows as $row){
+        $product_id = $row['product_id'];
+        $quantity = $row['quantity'];
+        $order_item->create(
+            [
+                'order_id'=>$orderId,
+                'product_id'=>$product_id,
+                'quantity'=>$quantity
+                
+            ]
+            );
+    }
 
 
+        $cart->clearCart($userId);
+
+        header("Location: /cart");
+}
+
+}
 
 
 ?>

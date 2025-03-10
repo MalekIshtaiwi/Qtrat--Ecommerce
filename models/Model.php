@@ -339,4 +339,17 @@ public function deleteByWhere($conditions)
             return false;
         }
     }
+
+    public function searchProducts($name) {
+        try {
+            $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE product_name LIKE :query LIMIT 10");
+            $searchTerm = "%$name%"; 
+            $stmt->bindParam(':query', $searchTerm, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Database error in searchProducts(): " . $e->getMessage());
+            return [];
+        }
+    }
 }

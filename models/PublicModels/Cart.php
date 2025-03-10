@@ -12,6 +12,7 @@ class Cart extends Model
     {
         $stmt = $this->db->prepare("
 SELECT 
+    c.product_id,
     p.product_name, 
     p.product_price, 
     p.product_img_url, 
@@ -29,38 +30,45 @@ WHERE c.user_id = :user_id;
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    function clearCart($id){
 
-
-    public function addToCart($user_id, $product_id, $quantity = 1)
-    {
         try {
-
-            $existingItem = $this->query(
-                "SELECT * FROM cart WHERE user_id = :user_id AND product_id = :product_id",
-                ['user_id' => $user_id, 'product_id' => $product_id],
-                false
-            );
-
-            if ($existingItem) {
-                // تحديث الكمية إذا كان العنصر موجودًا
-                $newQuantity = $existingItem['quantity'] + $quantity;
-                return $this->query(
-                    "UPDATE cart SET quantity = :quantity WHERE id = :id",
-                    ['quantity' => $newQuantity, 'id' => $existingItem['id']]
-                );
-            }
-
-            // إضافة عنصر جديد إلى السلة إذا لم يكن موجودًا
-            return $this->query(
-                "INSERT INTO cart (user_id, product_id, quantity) VALUES (:user_id, :product_id, :quantity)",
-                ['user_id' => $user_id, 'product_id' => $product_id, 'quantity' => $quantity]
-            );
+            $stmt = $this->db->prepare("DELETE FROM cart WHERE user_id = :value1");
+            $stmt->bindParam(':value1', $id);
+            return $stmt->execute();
+            
         } catch (PDOException $e) {
-            error_log("Database error in addToCart(): " . $e->getMessage());
-            return false;
+            error_log("Database error in findByTwoConditions(): " . $e->getMessage());
+            return null;
         }
     }
 
+     function findRow($userId,$productId){
+        try {
+            $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE user_id = :value1 AND product_id = :value2");
+            $stmt->bindParam(':value1', $userId);
+            $stmt->bindParam(':value2', $productId);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC); // Use fetch() if expecting one row, fetchAll() for multiple rows
+        } catch (PDOException $e) {
+            error_log("Database error in findByTwoConditions(): " . $e->getMessage());
+            return null;
+        }
+    }
+
+    function updateCart($userId,$productId,$quantity){
+        try {
+            $stmt = $this->db->prepare("UPDATE cart SET quantity = :new_value WHERE user_id = :value1 AND product_id = :value2;");
+            $stmt->bindParam(':new_value', $quantity);
+            $stmt->bindParam(':value1', $userId);
+            $stmt->bindParam(':value2', $productId);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC); // Use fetch() if expecting one row, fetchAll() for multiple rows
+        } catch (PDOException $e) {
+            error_log("Database error in findByTwoConditions(): " . $e->getMessage());
+            return null;
+        }
+    }
 
     // دالة لحذف عنصر من سلة التسوق
     public function removeFromCart($user_id, $product_id)

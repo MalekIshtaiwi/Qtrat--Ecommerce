@@ -15,6 +15,7 @@ require_once __DIR__ . '/controllers/PublicControllers/HomeController.php';
 require_once __DIR__ . '/controllers/PublicControllers/ShopController.php';
 require_once __DIR__ . '/controllers/PublicControllers/WishlistController.php';
 require_once __DIR__ . '/controllers/PublicControllers/CartController.php';
+require_once __DIR__ . '/controllers/PublicControllers/SearchController.php';
 
 $router = new Router();
 
@@ -78,6 +79,7 @@ $router->post('/user-logout', 'UserController@userLogout', 'user.logout');
 $router->get('/shop', 'ShopController@index');
 $router->get('/shop/{id}', 'ShopController@show', 'product.show');
 $router->post('/shop/{id}','ShopController@categorized');
+$router->post('/shop-search', 'SearchController@search');
 
 ///home page routes (Landing Page)
 $router->get('/home', 'HomeController@index', 'home.index');
@@ -98,11 +100,10 @@ $router->put('/user/{id}/update-security', 'UserController@updateSecurity', 'use
 $router->get('/user/{id}/security', 'UserController@editSecurity', 'user.security');
 $router->put('/user/{id}/update-security', 'UserController@updateSecurity', 'user.update-security');
 // Cart Routes
+$router->post('/addToCart','CartController@addToCart');
 $router->get('/cart', 'CartController@index', 'cart.index');
-
-$router->get('/cart/{id}/edit', 'CartController@edit', 'cart.edit');
-$router->put('/cart/{id}/update', 'CartController@update', 'cart.update');
-
-$router->delete('/cart/{id}/destroy', 'CartController@destroy', 'cart.destroy');
+$router->post('/cart-item-increase','CartController@increase');
+$router->post('/cart-item-decrease','CartController@decrease');
+$router->post('/checkout','CartController@checkout');
 /////////////Dispatch
 $router->dispatch();

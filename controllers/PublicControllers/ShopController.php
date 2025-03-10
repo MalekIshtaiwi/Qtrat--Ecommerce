@@ -6,9 +6,13 @@ class ShopController extends Controller
 
     public function index()
     {
-        $product = $this->model('product');
+            $product = $this->model('product');
             $products = $product->all();
             
+
+
+            
+
             $category = $this->model('category');
             $categories = $category->all();
 
